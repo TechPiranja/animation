@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS Animation Tutorial 💕</title>
+  <title>CSS Animation Tutorial</title>
   <style>
     * {
       margin: 0;
@@ -81,20 +81,62 @@
     }
 
     .code-block {
-      background: #2c3e50;
-      color: #ecf0f1;
-      padding: 15px;
-      border-radius: 10px;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 20px;
+      padding-top: 42px;
+      border-radius: 12px;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.75;
       overflow-x: auto;
       margin-top: 10px;
+      white-space: pre;
+      position: relative;
+      -webkit-overflow-scrolling: touch;
+      tab-size: 2;
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
-    .keyword { color: #e74c3c; }
-    .property { color: #3498db; }
-    .value { color: #2ecc71; }
-    .comment { color: #95a5a6; font-style: italic; }
+    .code-block::before {
+      content: 'CSS';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px 12px 0 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .code-block::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .code-block::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .code-block::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.12);
+      border-radius: 3px;
+    }
+
+    .code-block::-webkit-scrollbar-thumb:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .keyword { color: #cba6f7; font-weight: 600; }
+    .property { color: #89b4fa; }
+    .value { color: #a6e3a1; }
+    .comment { color: #6c7086; font-style: italic; }
 
     .controls {
       margin-top: 15px;
@@ -141,7 +183,7 @@
       color: #e74c3c;
     }
 
-    /* ===== ANIMATIONEN ===== */
+    /* ===== ANIMATIONS ===== */
 
     @keyframes float {
       0%, 100% {
@@ -205,6 +247,77 @@
       }
     }
 
+    @keyframes wiggle {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      15% {
+        transform: rotate(15deg);
+      }
+      30% {
+        transform: rotate(-15deg);
+      }
+      45% {
+        transform: rotate(10deg);
+      }
+      60% {
+        transform: rotate(-10deg);
+      }
+      75% {
+        transform: rotate(5deg);
+      }
+    }
+
+    @keyframes slide-in {
+      from {
+        transform: translateX(-200px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes color-shift {
+      0% { color: #e74c3c; }
+      25% { color: #f39c12; }
+      50% { color: #2ecc71; }
+      75% { color: #3498db; }
+      100% { color: #e74c3c; }
+    }
+
+    @keyframes flip {
+      0% {
+        transform: perspective(400px) rotateY(0deg);
+      }
+      50% {
+        transform: perspective(400px) rotateY(180deg);
+      }
+      100% {
+        transform: perspective(400px) rotateY(360deg);
+      }
+    }
+
+    @keyframes rubber-band {
+      0% { transform: scale(1, 1); }
+      30% { transform: scale(1.25, 0.75); }
+      40% { transform: scale(0.75, 1.25); }
+      50% { transform: scale(1.15, 0.85); }
+      65% { transform: scale(0.95, 1.05); }
+      75% { transform: scale(1.05, 0.95); }
+      100% { transform: scale(1, 1); }
+    }
+
+    @keyframes jello {
+      0%, 100% { transform: skewX(0deg) skewY(0deg); }
+      15% { transform: skewX(-12deg) skewY(-12deg); }
+      30% { transform: skewX(8deg) skewY(8deg); }
+      45% { transform: skewX(-5deg) skewY(-5deg); }
+      60% { transform: skewX(3deg) skewY(3deg); }
+      75% { transform: skewX(-1deg) skewY(-1deg); }
+    }
+
     .animate-float {
       animation: float 3s ease-in-out infinite;
     }
@@ -229,21 +342,58 @@
       animation: spin 2s linear infinite;
     }
 
+    .animate-wiggle {
+      animation: wiggle 1s ease-in-out infinite;
+    }
+
+    .animate-slide-in {
+      animation: slide-in 0.8s ease-out;
+    }
+
+    .animate-color-shift {
+      animation: color-shift 4s linear infinite;
+    }
+
+    .animate-flip {
+      animation: flip 2s ease-in-out infinite;
+    }
+
+    .animate-rubber-band {
+      animation: rubber-band 1s ease infinite;
+    }
+
+    .animate-jello {
+      animation: jello 1.5s ease infinite;
+    }
+
     @media (max-width: 768px) {
       .animation-card {
         grid-template-columns: 1fr;
       }
-      
+
       h1 {
         font-size: 2rem;
+      }
+
+      .code-block {
+        font-size: 0.75rem;
+        padding: 14px;
+        padding-top: 38px;
+        line-height: 1.65;
+        border-radius: 10px;
+      }
+
+      .code-block::before {
+        padding: 6px 14px;
+        font-size: 0.65rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>CSS Animation Tutorial 💕</h1>
-    <p class="subtitle">Lerne, wie Keyframe-Animationen funktionieren – mit interaktiven Beispielen!</p>
+    <h1>CSS Animation Tutorial</h1>
+    <p class="subtitle">Learn how keyframe animations work — with interactive examples!</p>
 
     <!-- Animation 1: Float -->
     <div class="animation-card">
@@ -253,24 +403,24 @@
         </svg>
       </div>
       <div class="info-area">
-        <h2>1. Float - Schwebend 🎈</h2>
-        <p>Das Herz schwebt sanft nach oben und dreht sich leicht. Perfekt für Hintergrund-Elemente!</p>
-        
+        <h2>1. Float</h2>
+        <p>The heart gently floats upward and tilts slightly. Perfect for background elements!</p>
+
         <div class="code-block">
 <span class="keyword">@keyframes</span> <span class="property">float</span> {
-  <span class="value">0%</span>, <span class="value">100%</span> { <span class="comment">/* Start & Ende */</span>
+  <span class="value">0%</span>, <span class="value">100%</span> { <span class="comment">/* Start & End */</span>
     <span class="property">transform</span>: translateY(<span class="value">0</span>) rotate(<span class="value">0deg</span>);
   }
-  <span class="value">50%</span> { <span class="comment">/* Mitte */</span>
+  <span class="value">50%</span> { <span class="comment">/* Middle */</span>
     <span class="property">transform</span>: translateY(<span class="value">-30px</span>) rotate(<span class="value">10deg</span>);
   }
 }
         </div>
 
         <div class="stats">
-          <div class="stat"><strong>Dauer:</strong> 3s</div>
+          <div class="stat"><strong>Duration:</strong> 3s</div>
           <div class="stat"><strong>Timing:</strong> ease-in-out</div>
-          <div class="stat"><strong>Wiederholung:</strong> infinite</div>
+          <div class="stat"><strong>Repeat:</strong> infinite</div>
         </div>
       </div>
     </div>
@@ -283,9 +433,9 @@
         </svg>
       </div>
       <div class="info-area">
-        <h2>2. Bounce - Hüpfen ⬆️⬇️</h2>
-        <p>Ein sanftes Hüpfen nach oben und unten. Zieht Aufmerksamkeit auf wichtige Elemente!</p>
-        
+        <h2>2. Bounce</h2>
+        <p>A gentle hop up and down. Draws attention to important elements!</p>
+
         <div class="code-block">
 <span class="keyword">@keyframes</span> <span class="property">bounce-slow</span> {
   <span class="value">0%</span>, <span class="value">100%</span> {
@@ -298,9 +448,9 @@
         </div>
 
         <div class="stats">
-          <div class="stat"><strong>Dauer:</strong> 1s</div>
+          <div class="stat"><strong>Duration:</strong> 1s</div>
           <div class="stat"><strong>Timing:</strong> ease-in-out</div>
-          <div class="stat"><strong>Wiederholung:</strong> infinite</div>
+          <div class="stat"><strong>Repeat:</strong> infinite</div>
         </div>
       </div>
     </div>
@@ -313,9 +463,9 @@
         </svg>
       </div>
       <div class="info-area">
-        <h2>3. Fade-In - Einblenden ✨</h2>
-        <p>Element erscheint sanft und wächst dabei. Ideal für neue Inhalte!</p>
-        
+        <h2>3. Fade-In</h2>
+        <p>Element appears softly and grows in. Ideal for revealing new content!</p>
+
         <div class="code-block">
 <span class="keyword">@keyframes</span> <span class="property">fade-in</span> {
   <span class="value">from</span> {
@@ -330,13 +480,13 @@
         </div>
 
         <div class="controls">
-          <button class="btn" onclick="restartFade()">Nochmal abspielen ▶️</button>
+          <button class="btn" onclick="restartFade()">Replay</button>
         </div>
 
         <div class="stats">
-          <div class="stat"><strong>Dauer:</strong> 1s</div>
+          <div class="stat"><strong>Duration:</strong> 1s</div>
           <div class="stat"><strong>Timing:</strong> ease-out</div>
-          <div class="stat"><strong>Mode:</strong> forwards (bleibt am Ende)</div>
+          <div class="stat"><strong>Mode:</strong> forwards (stays at end)</div>
         </div>
       </div>
     </div>
@@ -349,9 +499,9 @@
         </svg>
       </div>
       <div class="info-area">
-        <h2>4. Heart Burst - Explosion 💥</h2>
-        <p>Spektakuläre Explosion mit Drehung! Der elastische Effekt macht's besonders cool.</p>
-        
+        <h2>4. Heart Burst</h2>
+        <p>A spectacular explosion with rotation! The elastic effect makes it extra cool.</p>
+
         <div class="code-block">
 <span class="keyword">@keyframes</span> <span class="property">heart-burst</span> {
   <span class="value">0%</span> {
@@ -369,13 +519,13 @@
         </div>
 
         <div class="controls">
-          <button class="btn" onclick="restartBurst()">Nochmal abspielen ▶️</button>
+          <button class="btn" onclick="restartBurst()">Replay</button>
         </div>
 
         <div class="stats">
-          <div class="stat"><strong>Dauer:</strong> 0.8s</div>
-          <div class="stat"><strong>Timing:</strong> cubic-bezier (elastisch!)</div>
-          <div class="stat"><strong>Effekt:</strong> Bounce-Effekt</div>
+          <div class="stat"><strong>Duration:</strong> 0.8s</div>
+          <div class="stat"><strong>Timing:</strong> cubic-bezier (elastic!)</div>
+          <div class="stat"><strong>Effect:</strong> Bounce</div>
         </div>
       </div>
     </div>
@@ -388,9 +538,9 @@
         </svg>
       </div>
       <div class="info-area">
-        <h2>5. Pulse - Herzschlag 💓</h2>
-        <p>Wie ein schlagendes Herz! Perfekt für "Like"-Buttons oder Benachrichtigungen.</p>
-        
+        <h2>5. Pulse - Heartbeat</h2>
+        <p>Like a beating heart! Perfect for "Like" buttons or notifications.</p>
+
         <div class="code-block">
 <span class="keyword">@keyframes</span> <span class="property">pulse</span> {
   <span class="value">0%</span>, <span class="value">100%</span> {
@@ -403,9 +553,9 @@
         </div>
 
         <div class="stats">
-          <div class="stat"><strong>Dauer:</strong> 1s</div>
+          <div class="stat"><strong>Duration:</strong> 1s</div>
           <div class="stat"><strong>Timing:</strong> ease-in-out</div>
-          <div class="stat"><strong>Wiederholung:</strong> infinite</div>
+          <div class="stat"><strong>Repeat:</strong> infinite</div>
         </div>
       </div>
     </div>
@@ -418,9 +568,9 @@
         </svg>
       </div>
       <div class="info-area">
-        <h2>6. Spin - Drehen 🔄</h2>
-        <p>Kontinuierliche 360° Drehung. Klassisch für Ladeanzeigen!</p>
-        
+        <h2>6. Spin</h2>
+        <p>Continuous 360-degree rotation. A classic for loading spinners!</p>
+
         <div class="code-block">
 <span class="keyword">@keyframes</span> <span class="property">spin</span> {
   <span class="value">from</span> {
@@ -433,9 +583,207 @@
         </div>
 
         <div class="stats">
-          <div class="stat"><strong>Dauer:</strong> 2s</div>
-          <div class="stat"><strong>Timing:</strong> linear (konstante Geschwindigkeit)</div>
-          <div class="stat"><strong>Wiederholung:</strong> infinite</div>
+          <div class="stat"><strong>Duration:</strong> 2s</div>
+          <div class="stat"><strong>Timing:</strong> linear (constant speed)</div>
+          <div class="stat"><strong>Repeat:</strong> infinite</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation 7: Wiggle -->
+    <div class="animation-card">
+      <div class="demo-area">
+        <svg class="heart animate-wiggle" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </div>
+      <div class="info-area">
+        <h2>7. Wiggle</h2>
+        <p>A playful shaking motion that decays over time. Great for error states or attention-grabbing icons!</p>
+
+        <div class="code-block">
+<span class="keyword">@keyframes</span> <span class="property">wiggle</span> {
+  <span class="value">0%</span>, <span class="value">100%</span> { <span class="property">transform</span>: rotate(<span class="value">0deg</span>); }
+  <span class="value">15%</span> { <span class="property">transform</span>: rotate(<span class="value">15deg</span>); }
+  <span class="value">30%</span> { <span class="property">transform</span>: rotate(<span class="value">-15deg</span>); }
+  <span class="value">45%</span> { <span class="property">transform</span>: rotate(<span class="value">10deg</span>); }
+  <span class="value">60%</span> { <span class="property">transform</span>: rotate(<span class="value">-10deg</span>); }
+  <span class="value">75%</span> { <span class="property">transform</span>: rotate(<span class="value">5deg</span>); }
+}
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong>Duration:</strong> 1s</div>
+          <div class="stat"><strong>Timing:</strong> ease-in-out</div>
+          <div class="stat"><strong>Effect:</strong> Decaying oscillation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation 8: Slide-In -->
+    <div class="animation-card">
+      <div class="demo-area">
+        <svg id="slideHeart" class="heart" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </div>
+      <div class="info-area">
+        <h2>8. Slide-In</h2>
+        <p>Element slides in from the left while fading in. Perfect for page transitions and list items!</p>
+
+        <div class="code-block">
+<span class="keyword">@keyframes</span> <span class="property">slide-in</span> {
+  <span class="value">from</span> {
+    <span class="property">transform</span>: translateX(<span class="value">-200px</span>);
+    <span class="property">opacity</span>: <span class="value">0</span>;
+  }
+  <span class="value">to</span> {
+    <span class="property">transform</span>: translateX(<span class="value">0</span>);
+    <span class="property">opacity</span>: <span class="value">1</span>;
+  }
+}
+        </div>
+
+        <div class="controls">
+          <button class="btn" onclick="restartSlide()">Replay</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong>Duration:</strong> 0.8s</div>
+          <div class="stat"><strong>Timing:</strong> ease-out</div>
+          <div class="stat"><strong>Effect:</strong> Entrance animation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation 9: Color Shift -->
+    <div class="animation-card">
+      <div class="demo-area">
+        <svg class="heart animate-color-shift" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </div>
+      <div class="info-area">
+        <h2>9. Color Shift</h2>
+        <p>Smoothly cycles through a rainbow of colors. Great for decorative elements or mood indicators!</p>
+
+        <div class="code-block">
+<span class="keyword">@keyframes</span> <span class="property">color-shift</span> {
+  <span class="value">0%</span>   { <span class="property">color</span>: <span class="value">#e74c3c</span>; } <span class="comment">/* Red */</span>
+  <span class="value">25%</span>  { <span class="property">color</span>: <span class="value">#f39c12</span>; } <span class="comment">/* Orange */</span>
+  <span class="value">50%</span>  { <span class="property">color</span>: <span class="value">#2ecc71</span>; } <span class="comment">/* Green */</span>
+  <span class="value">75%</span>  { <span class="property">color</span>: <span class="value">#3498db</span>; } <span class="comment">/* Blue */</span>
+  <span class="value">100%</span> { <span class="property">color</span>: <span class="value">#e74c3c</span>; } <span class="comment">/* Red */</span>
+}
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong>Duration:</strong> 4s</div>
+          <div class="stat"><strong>Timing:</strong> linear</div>
+          <div class="stat"><strong>Effect:</strong> Color cycling</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation 10: 3D Flip -->
+    <div class="animation-card">
+      <div class="demo-area">
+        <svg class="heart animate-flip" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </div>
+      <div class="info-area">
+        <h2>10. 3D Flip</h2>
+        <p>A 3D rotation using perspective. Adds depth and dimension to your animations!</p>
+
+        <div class="code-block">
+<span class="keyword">@keyframes</span> <span class="property">flip</span> {
+  <span class="value">0%</span> {
+    <span class="property">transform</span>: perspective(<span class="value">400px</span>)
+      rotateY(<span class="value">0deg</span>);
+  }
+  <span class="value">50%</span> {
+    <span class="property">transform</span>: perspective(<span class="value">400px</span>)
+      rotateY(<span class="value">180deg</span>);
+  }
+  <span class="value">100%</span> {
+    <span class="property">transform</span>: perspective(<span class="value">400px</span>)
+      rotateY(<span class="value">360deg</span>);
+  }
+}
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong>Duration:</strong> 2s</div>
+          <div class="stat"><strong>Timing:</strong> ease-in-out</div>
+          <div class="stat"><strong>Effect:</strong> 3D perspective</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation 11: Rubber Band -->
+    <div class="animation-card">
+      <div class="demo-area">
+        <svg class="heart animate-rubber-band" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </div>
+      <div class="info-area">
+        <h2>11. Rubber Band</h2>
+        <p>Stretches and squashes like a rubber band! Fun for playful UIs and game-like interactions.</p>
+
+        <div class="code-block">
+<span class="keyword">@keyframes</span> <span class="property">rubber-band</span> {
+  <span class="value">0%</span>   { <span class="property">transform</span>: scale(<span class="value">1, 1</span>); }
+  <span class="value">30%</span>  { <span class="property">transform</span>: scale(<span class="value">1.25, 0.75</span>); }
+  <span class="value">40%</span>  { <span class="property">transform</span>: scale(<span class="value">0.75, 1.25</span>); }
+  <span class="value">50%</span>  { <span class="property">transform</span>: scale(<span class="value">1.15, 0.85</span>); }
+  <span class="value">65%</span>  { <span class="property">transform</span>: scale(<span class="value">0.95, 1.05</span>); }
+  <span class="value">75%</span>  { <span class="property">transform</span>: scale(<span class="value">1.05, 0.95</span>); }
+  <span class="value">100%</span> { <span class="property">transform</span>: scale(<span class="value">1, 1</span>); }
+}
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong>Duration:</strong> 1s</div>
+          <div class="stat"><strong>Timing:</strong> ease</div>
+          <div class="stat"><strong>Effect:</strong> Squash & stretch</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation 12: Jello -->
+    <div class="animation-card">
+      <div class="demo-area">
+        <svg class="heart animate-jello" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </div>
+      <div class="info-area">
+        <h2>12. Jello</h2>
+        <p>A wobbly jello-like effect using skew transforms. Quirky and fun for hover states!</p>
+
+        <div class="code-block">
+<span class="keyword">@keyframes</span> <span class="property">jello</span> {
+  <span class="value">0%</span>, <span class="value">100%</span> {
+    <span class="property">transform</span>: skewX(<span class="value">0</span>) skewY(<span class="value">0</span>);
+  }
+  <span class="value">15%</span> {
+    <span class="property">transform</span>: skewX(<span class="value">-12deg</span>) skewY(<span class="value">-12deg</span>);
+  }
+  <span class="value">30%</span> {
+    <span class="property">transform</span>: skewX(<span class="value">8deg</span>) skewY(<span class="value">8deg</span>);
+  }
+  <span class="value">45%</span> {
+    <span class="property">transform</span>: skewX(<span class="value">-5deg</span>) skewY(<span class="value">-5deg</span>);
+  }
+}
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong>Duration:</strong> 1.5s</div>
+          <div class="stat"><strong>Timing:</strong> ease</div>
+          <div class="stat"><strong>Effect:</strong> Decaying skew</div>
         </div>
       </div>
     </div>
@@ -443,26 +791,30 @@
   </div>
 
   <script>
-    function restartFade() {
-      const heart = document.getElementById('fadeHeart');
-      heart.style.animation = 'none';
+    function restartAnimation(id, animationValue) {
+      const el = document.getElementById(id);
+      el.style.animation = 'none';
       setTimeout(() => {
-        heart.style.animation = 'fade-in 1s ease-out forwards';
+        el.style.animation = animationValue;
       }, 10);
+    }
+
+    function restartFade() {
+      restartAnimation('fadeHeart', 'fade-in 1s ease-out forwards');
     }
 
     function restartBurst() {
-      const heart = document.getElementById('burstHeart');
-      heart.style.animation = 'none';
-      setTimeout(() => {
-        heart.style.animation = 'heart-burst 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
-      }, 10);
+      restartAnimation('burstHeart', 'heart-burst 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards');
     }
 
-    // Start animations on load
+    function restartSlide() {
+      restartAnimation('slideHeart', 'slide-in 0.8s ease-out forwards');
+    }
+
     window.addEventListener('load', () => {
       restartFade();
       restartBurst();
+      restartSlide();
     });
   </script>
 </body>
